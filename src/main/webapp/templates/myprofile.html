@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="base.html :: copy"></head>
+<body>
+<div th:replace="header.html :: copy"></div>
+
+<div class="credentials">
+    <img id="profile-icon" src="/static/img/profile_icon.png" width="40px">
+    <div>
+        <p th:text="${'Your Username: '+ session.get('user').getName()}"></p>
+        <p  th:text="${'Email address: '+ session.get('user').getEmail()}"></p>
+    </div>
+</div>
+
+<div class="my-billing-profile-container">
+    <h2 th:if="${address == null}">You don't have a Billing address!</h2>
+    <button th:if="${address == null}" class="btn btn-success add-billing-details">Add</button>
+    <div th:if="${address != null}">
+        <div class="my-profile-drivers-title"><h2>Billing address:</h2></div>
+        <div class="my-profile-drivers">
+            <button class="btn btn-warning" id="edit-billing-details">Edit</button>
+<!--            <select class="form-control" name="billing-addresses" id="billing-addresses">-->
+<!--                <option value="test1">Test1</option>-->
+<!--                <option value="test2">Test2</option>-->
+<!--                <option value="test3">Test3</option>-->
+<!--                <option value="test4">Test4</option>-->
+<!--            </select>-->
+        </div>
+    </div>
+    <div th:if="${address != null}">
+        <table class="table my-profile-info-table">
+            <tbody id="billing-info-container">
+            <tr>
+                <td>First Name:</td>
+                <td th:text="${address.getFirstName()}"></td>
+            </tr>
+            <tr>
+                <td>Last Name:</td>
+                <td th:text="${address.getLastName()}"></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td th:text="${address.getEmail()}"></td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td th:text="${address.getAddress()}"></td>
+            </tr>
+            <tr>
+                <td>Country:</td>
+                <td th:text="${address.getCountry()}"></td>
+            </tr>
+            <tr>
+                <td>State:</td>
+                <td th:text="${address.getState()}"></td>
+            </tr>
+            <tr>
+                <td>Zip Code:</td>
+                <td th:text="${address.getZip()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<hr>
+
+<div class="my-shipping-profile-container">
+    <h2 th:if="${shipping == null}">You don't have a Shipping Address yet!</h2>
+    <button th:if="${shipping == null}" class="btn btn-success add-shipping-details">Add</button>
+    <div th:if="${shipping != null}">
+        <div class="my-profile-drivers-title"><h2>Shipping address:</h2></div>
+            <div class="my-profile-drivers">
+            <button class="btn btn-warning" id="edit-shipping-details">Edit</button>
+<!--            <select class="form-control" name="billing-addresses" id="shipping-addresses">-->
+<!--                <option value="test1">Test1</option>-->
+<!--                <option value="test2">Test2</option>-->
+<!--                <option value="test3">Test3</option>-->
+<!--                <option value="test4">Test4</option>-->
+<!--            </select>-->
+        </div>
+    </div>
+    <div th:if="${shipping != null}">
+        <table class="table my-profile-info-table">
+            <tbody id="shipping-info-container">
+            <tr>
+                <td>First Name:</td>
+                <td th:text="${shipping.getFirstName()}"></td>
+            </tr>
+            <tr>
+                <td>Last Name:</td>
+                <td th:text="${shipping.getLastName()}"></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td th:text="${shipping.getEmail()}"></td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td th:text="${shipping.getAddress()}"></td>
+            </tr>
+            <tr>
+                <td>Country:</td>
+                <td th:text="${shipping.getCountry()}"></td>
+            </tr>
+            <tr>
+                <td>State:</td>
+                <td th:text="${shipping.getState()}"></td>
+            </tr>
+            <tr>
+                <td>Zip Code:</td>
+                <td th:text="${shipping.getZip()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<a class="btn btn-primary" href="/">Back to main Page</a>
+
+
+<div th:replace="modalWindow.html :: copy"></div>
+</body>
+<div th:replace="footer.html :: copy"></div>
+</html>

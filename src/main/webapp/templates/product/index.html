@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="base.html :: copy"></head>
+<body>
+<div th:replace="header.html :: copy"></div>
+
+<div class="container">
+    <div class="dropdown">
+        <div class="btn-group">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false"
+                    th:text="${actualCategory}?${'Filtered by: ' + actualCategory}: 'Filter By Category'">
+                Filter By Category
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a th:each="category : ${categories}" th:value="${category}" th:text="${category.name}"
+                   class="dropdown-item" th:href="@{/(category=${category.getId()})}">Action</a>
+            </div>
+        </div>
+        <div class="btn-group">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false"
+                    th:text="${actualSupplier}?${'Filtered by: ' + actualSupplier}: 'Filter By Supplier'">
+                Filter By Supplier
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a th:each="supplier : ${suppliers}" th:value="${supplier}" th:text="${supplier.name}"
+                   class="dropdown-item" th:href="@{/(supplier=${supplier.getId()})}">Action</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="products" class="row">
+        <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${products}">
+            <div class="card">
+                <div class="card-image-container zoom">
+                    <img class="card-image" src="http://placehold.it/400x250/000/fff"
+                         th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt=""/>
+                </div>
+                <div class="card-header">
+                    <h4 class="card-title" th:text="${prod.name}">Product name</h4>
+                    <p class="card-text" th:text="${prod.description}">Product description... </p>
+                </div>
+                <div class="card-body">
+                    <div class="card-text">
+                        <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
+                    </div>
+                    <div class="card-text">
+                        <a class="btn btn-success" th:href="@{/cart(addtoCart=${prod.getId()})}">Add to cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="modalWindow.html :: copy"></div>
+</body>
+<div th:replace="footer.html :: copy"></div>
+</html>

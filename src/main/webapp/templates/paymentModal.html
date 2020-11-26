@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="copy">
+    <div class="modal fade" id="payment-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" id="payment-modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Payment</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="payment-modal-body">
+                    <form id="payment-form">
+                        <div id="payment-img-container" class="custom-control custom-checkbox">
+                            <img id="visa-master" src="/static/img/visamaster.png">
+                            <img id="paypal-img" src="/static/img/paypal.png">
+                        </div>
+
+                        <div class="d-block my-3" id="radio-container">
+                            <div class="custom-control custom-radio">
+                                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input"
+                                       checked=""
+                                       required>
+                                <label class="custom-control-label" for="credit">Credit card</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input"
+                                       required>
+                                <label class="custom-control-label" for="paypal">PayPal</label>
+                            </div>
+                        </div>
+                        <div id="payment-container">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="cc-name">Name on card</label>
+                                    <input type="text" class="form-control" name="cc-name" id="cc-name" placeholder=""
+                                           required>
+                                    <small class="text-muted">Full name as displayed on card</small>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="cc-number">Credit card number</label>
+                                    <input type="text" class="form-control" name="cc-number" id="cc-number"
+                                           placeholder=""
+                                           required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    <label for="cc-expiration">Expiration</label>
+                                    <input type="text" class="form-control" name="cc-expiration" id="cc-expiration"
+                                           placeholder=""
+                                           required>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="cc-cvv">CVV</label>
+                                    <input type="number" maxlength="3" class="form-control" name="cc-cvv" id="cc-cvv" placeholder=""
+                                           required>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer" id="modal-footer">
+                    <button type="button" id="payment-modal-back-button" class="btn btn-secondary" data-dismiss="modal">
+                        Back
+                    </button>
+                    <form>
+                        <button type="button" id="confirm" class="btn btn-primary">Confirm</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

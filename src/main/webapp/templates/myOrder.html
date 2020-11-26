@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="base.html :: copy"></head>
+<body>
+<div th:replace="header.html :: copy"></div>
+<div class="my-order-container">
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Order Date</th>
+            <th scope="col">Total Price</th>
+        </tr>
+
+        </thead>
+        <tbody>
+        <tr th:each="order : ${orders}">
+            <td>
+                <button th:data="${order.orderId}" class="btn btn-success my-order-id" type="button">details</button>
+            </td>
+            <td th:text="${order.orderDate}"></td>
+            <td th:text="${order.total + ' USD'}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-primary" href="/">Back</a>
+</div>
+<div th:replace="modalWindow.html :: copy"></div>
+</body>
+<div th:replace="footer.html :: copy"></div>
+</html>

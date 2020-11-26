@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+>
+
+<head th:replace="base.html :: copy"></head>
+<div th:fragment="copy">
+    <div id="billing-form-container-checkout">
+        <div class="col-md-10 order-md-1">
+            <h4 class="billing-title">Billing address</h4>
+            <form class="needs-validation" id="confirmation-form" name="shipping-form">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="firstName">First name</label>
+                        <input type="text" class="form-control" name="firstName" id="firstName" placeholder="" th:value="${billingData!= null?billingData.getFirstName(): ''}"
+                               required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="lastName">Last name</label>
+                        <input type="text" class="form-control" name="lastName" id="lastName" placeholder="" th:value="${billingData!= null?billingData.getLastName(): ''}"
+                               required>
+                    </div>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="email">Email <span class="text-muted">(Optional)</span></label>
+                    <input type="email" class="form-control" name="email" id="email" th:value="${billingData!= null?billingData.getEmail(): ''}">
+                </div>
+
+                <div class="mb-3">
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" name="address" id="address" th:value="${billingData!= null? billingData.getAddress(): ''}"
+                           required>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-5 mb-3">
+                        <label for="country">Country</label>
+                        <select class="custom-select d-block w-100" name="country" id="country" required>
+                            <option th:value="${billingData!= null? billingData.getCountry(): ''}" th:text="${billingData!= null? billingData.getCountry(): 'Choose..'}" >Choose...</option>
+                            <option>Hungary</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="state">State</label>
+                        <select class="custom-select d-block w-100" name="state" id="state" required>
+                            <option th:value="${billingData!= null? billingData.getState(): ''}" th:text="${billingData!= null? billingData.getState(): 'Choose..'}"></option>
+                            <option>Bacs-Kiskun</option>
+                            <option>Baranya</option>
+                            <option>Bekes</option>
+                            <option>Borsod-Abauj-Zemplen</option>
+                            <option>Budapest</option>
+                            <option>Csongrad</option>
+                            <option>Fejer</option>
+                            <option>Gyor-Moson-Sopron</option>
+                            <option>Hajdu-Bihar</option>
+                            <option>Heves</option>
+                            <option>Jasz-Nagykun-Szolnok</option>
+                            <option>Komarom-Esztergom</option>
+                            <option>Nograd</option>
+                            <option>Pest</option>
+                            <option>Somogy</option>
+                            <option>Szabolcs-Szatmar-Bereg</option>
+                            <option>Tolna</option>
+                            <option>Vas</option>
+                            <option>Veszprem</option>
+                            <option>Zala</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="zip">Zip</label>
+                        <input type="number" class="form-control" name="zip" id="zip" th:value="${billingData!= null? billingData.getZip() : ''}" required>
+                    </div>
+                </div>
+                <div>
+                    <input id="different-shipping" type="checkbox" checked>
+                    <label for="different-shipping">Shipping is the same as Billing Address</label>
+                </div>
+                <div id="shipping-info-container">
+                </div>
+                <button class="btn btn-primary" id="payment" type="button">Continue to payment</button>
+            </form>
+        </div>
+    </div>
+</div>
+</html>

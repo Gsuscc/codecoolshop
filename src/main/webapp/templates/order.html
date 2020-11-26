@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="base.html :: copy"></head>
+<body>
+<div th:replace="header.html :: copy"></div>
+
+<div class="checkout-container">
+    <div class="row">
+        <p class="order-overview-container">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Image</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Sub Total Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product, iter : ${cartOverview}">
+                <th scope="row" th:text="${iter.index + 1}"></th>
+                <td><img class="overview-image" src="http://placehold.it/400x250/000/fff"
+                         th:attr="src='/static/img/product_' + ${product.productId} + '.jpg'" alt=""/></td>
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.quantity}"></td>
+                <td th:text="${product.getUnitPrice()} + ' USD'"></td>
+                <td th:text="${product.getUnitPrice() * product.quantity} + ' USD'"></td>
+            </tr>
+            <td class="total-line" colspan="5"><h4 th:text="'TOTAL: '"></h4></td>
+            <td><h4 th:text="${cartTotalAmount} + ' USD'"></h4></td>
+            </tbody>
+        </table>
+    </div>
+    <div th:replace="billinginfo.html :: copy"></div>
+</div>
+
+<div th:replace="paymentModal.html :: copy"></div>
+<div th:replace="modalWindow.html :: copy"></div>
+</body>
+<div th:replace="footer.html :: copy"></div>
+</html>
